@@ -1,4 +1,4 @@
-# 7. Technical Foundations
+# Technical Foundations
 
 This chapter describes the technical building blocks that underpin WP4 use cases. Every WP4 use case, regardless of sector, shares the same technical substrate. It uses the same wallet model defined by the Architectural Reference Framework (ARF). It relies on the same two families of credentials (PID and EAA, with QEAA where qualified status is required). It follows the same lifecycle patterns for issuance, verification, and revocation. It implements the same privacy guarantees of selective disclosure and user consent. It anchors its trust decisions in the same trust framework and trusted issuer lists. Finally, it relies on the same set of technical standards and protocols (notably OpenID4VCI, OpenID4VP, ISO/IEC 18013-5, SD-JWT VC).
 
@@ -8,7 +8,7 @@ Describing all of this once, at the chapter level, has three benefits:
 * **Consistency.** A single authoritative description of the technical foundations ensures that all 11 UCs use the same vocabulary, protocol names, and interpretation of the ARF.
 * **Traceability.** Implementation teams working on preparing the pilot in D4.2, and validation teams working on D4.3, can trace a concrete design decision back to the foundational choice that motivated it.
 
-### Chapter structure
+## Chapter structure
 
 The chapter is organised into six sections, each addressing one aspect of the technical substrate. 
 
