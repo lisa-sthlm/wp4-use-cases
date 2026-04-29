@@ -37,7 +37,7 @@ def generate_qmd(md: str) -> str:
     qmd = md.replace(".md", ".qmd")
     # Add section anchor
     if len(lines) > 0 and lines[0].startswith("#"):
-        sec_anchor = "sec-" + qmd.split("--")[0].replace(".", "_")
+        sec_anchor = "sec-" + qmd.split("--")[0].replace(".", "_").replace("-", "_")
         lines[0] = lines[0][:-1] + " {#" + sec_anchor + "}" + "\n"
     with open(qmd, "w") as qmd_file:
         for line in lines:
@@ -60,8 +60,7 @@ def main():
             set_nested(sections, section_number_path, {"input": qmd})
         elif md.startswith("Annex-"):
             print(f"Found annex: {md}")
-            qmd = md.replace(".md", ".qmd")
-            shutil.copyfile(md, qmd)
+            qmd = generate_qmd(md)
             annex_number_path = md[len("Annex-"):].split("--")[0].split(".")
             set_nested(annexes, annex_number_path, {"input": qmd})
         else:
