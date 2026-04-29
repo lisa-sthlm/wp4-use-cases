@@ -34,3 +34,5 @@ format:
       - brand
   pdf:
     documentclass: scrreprt
+  docx:
+    reference-doc: template.docx
