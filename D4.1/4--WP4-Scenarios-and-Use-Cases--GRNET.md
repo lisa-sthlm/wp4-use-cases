@@ -1,14 +1,14 @@
-# 4. WP4 Scenarios and Use Cases
+# WP4 Scenarios and Use Cases
 
 This chapter presents, in consolidated form, the 11 accepted WP4 use cases and the three scenarios into which they are organised. Its purpose is to give a coherent view of the pilot portfolio: what each use case is about, how it contributes to one or more of the WP4 scenarios, who is involved, and how it connects to the other use cases within APTITUDE. Detailed specification sheets for every UC, following the standardised template introduced in Section 3.4, are provided in full in Annex A.
 
-### Two-layer structure
+**Two-layer structure**
 
 The chapter is structured in two layers. The first layer is a **scenario-level overview**, presented in Section 4.1, that frames how the 11 use cases combine into coherent end-to-end journeys across the three WP4 scenarios (hotel check-in, streamlined travel experience, student access). It is written by the WP4 coordinator (GRNET) and cuts across the individual use cases, indicating which UCs contribute to which scenarios, where they overlap, and where they hand off to other Work Packages (notably WP3 and WP6). Section 4.1 also contains the high-level summary table of all 11 use cases, together with a visual mapping of the UC-to-scenario relationships.
 
 The second layer consists of **individual UC sections**, each owned by its respective UC lead(s), that present one use case at a time following the standardised template. Each section includes the UC summary, the user story, the list of actors, the context and preconditions, the credentials involved, the user journey, the technical flow with accompanying diagrams, and the unhappy paths. The layout of the UC template, and the rationale behind the chosen fields, are documented in Section 3.4; the diagrammatic standards applied inside each UC section are documented in Section 3.1.1.
 
-### The three WP4 scenarios at a glance
+**The three WP4 scenarios at a glance**
 
 The 11 use cases are organised into three scenarios, each reflecting a real-world, end-to-end user journey:
 
@@ -18,7 +18,7 @@ The 11 use cases are organised into three scenarios, each reflecting a real-worl
 
 Several use cases span more than one scenario. The SEDIT-X use case, for example, is itself a multi-episode journey that touches all three scenarios (airport boarding, urban mobility, ferry transport, hospitality, and academic access). This is addressed in Section 4.1, which makes the UC-to-scenario mapping explicit and highlights the use cases that act as bridges between scenarios.
 
-### The 11 use cases at a glance
+**The 11 use cases at a glance**
 
 The following table lists the 11 accepted WP4 use cases with their leads, to orient the reader before the scenario mapping in Section 4.1 and the individual sections that follow.
 
