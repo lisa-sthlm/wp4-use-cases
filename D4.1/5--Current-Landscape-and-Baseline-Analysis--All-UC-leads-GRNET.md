@@ -1,4 +1,4 @@
-# 5. Current Landscape and Baseline Analysis
+# Current Landscape and Baseline Analysis
 
 This chapter presents the findings of the T4.2 stock-taking activity on **existing processes, technical implementations supporting online services, identity matching and identity management**. Its purpose is to establish the baseline against which the EUDIW-enabled use cases are designed: how things work today, what technology is already in place at each touchpoint, and where the gaps and pain points are. The chapter is the empirical ground of this deliverable: every design decision captured in the UC specifications (Chapter 4) and every risk flagged in Chapter 9 can be traced back to a finding recorded here.
 
@@ -10,7 +10,7 @@ The first purpose is to **justify the design choices** made in the UC specificat
 
 The second purpose is to provide the **"before" picture** against which the pilot results reported in D4.3 will later be evaluated. The stock-taking phase captures, in narrative form, the current processing times, the current manual steps, the current points of friction, and the current operational constraints. When D4.3 reports on the piloted implementations, it will refer back to this baseline to quantify the improvements (or the lack thereof) that the EUDIW-enabled variant delivers. For this reason, the findings are recorded with the necessary level of detail that will later support  comparison.
 
-### Scope of the baseline
+**Scope of the baseline**
 
 The baseline captured in this chapter covers three sectors, corresponding to the three WP4 scenarios:
 
@@ -20,7 +20,7 @@ The baseline captured in this chapter covers three sectors, corresponding to the
 
 Within each sector, the analysis looks at the **existing digital infrastructure** (APIs, apps, identity systems, authentication mechanisms) that WP4 implementations will need to interoperate with, complement, or gradually replace. The chapter does not aim to describe every sector exhaustively; rather, it focuses on the touchpoints that the 11 WP4 use cases will actually address.
 
-### How the chapter was produced
+**How the chapter was produced**
 
 The content of this chapter is the consolidated output of contributions from all 11 UC leads, integrated by the WP4 coordinator (GRNET). Each UC lead, starting from its own sector and from the partner organisations it had engaged, contributed:
 
@@ -28,7 +28,7 @@ The content of this chapter is the consolidated output of contributions from all
 2. A description of the **existing technical implementations** that support that process today: the identity systems (such as proprietary loyalty accounts, booking reference codes, university enrolment databases), the authentication mechanisms in place, the APIs exposed by the relying party to its own internal systems, and any third-party services (such as transliteration engines, watchlist checks) currently relied on.
 3. A list of the **pain points** observed during the stock-taking interviews, ordered by the frequency with which they were reported across UC leads.
 
-### Structure of the chapter
+**Structure of the chapter**
 
 The chapter is organised into three sections, each addressing one of the three analytical dimensions defined in the T4.2 work plan.
 
