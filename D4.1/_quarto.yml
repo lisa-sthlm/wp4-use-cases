@@ -1,6 +1,10 @@
 project:
   type: book
 
+language:
+  en:
+    section-title-appendices: "Annexes"
+
 book:
   title: "D4.1: UC Specifications and Scenarios"
   author: "APTITUDE WP4"
@@ -26,9 +30,6 @@ book:
 
 format:
   html:
-    language:
-      en:
-        section-title-appendices: "Annexes"
     number-depth: 3
     toc: true
     toc-depth: 4
@@ -37,12 +38,6 @@ format:
       - cosmo
       - brand
   pdf:
-    language:
-      en:
-        section-title-appendices: "Annexes"
     documentclass: scrreprt
   docx:
-    language:
-      en:
-        section-title-appendices: "Annexes"
     reference-doc: template.docx
