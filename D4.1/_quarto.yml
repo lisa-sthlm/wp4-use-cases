@@ -26,6 +26,8 @@ book:
 
 format:
   html:
+    language:
+      section-title-appendices: "Annexes"
     number-depth: 3
     toc: true
     toc-depth: 4
@@ -34,6 +36,10 @@ format:
       - cosmo
       - brand
   pdf:
+    language:
+      section-title-appendices: "Annexes"
     documentclass: scrreprt
   docx:
+    language:
+      section-title-appendices: "Annexes"
     reference-doc: template.docx
