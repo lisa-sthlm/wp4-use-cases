@@ -1,10 +1,10 @@
-# 8. Description of the Ecosystem: Actors and Roles
+# Description of the Ecosystem: Actors and Roles
 
 This chapter provides the **actor-centric view** of the WP4 pilot. Whereas Chapter 4 organises the material by use case, and Chapter 7 organises it by technical building block, Chapter 8 organises it by the parties that play a role in the ecosystem and the roles that they play. 
 
 The EUDIW ecosystem is, by design, multi-actor. A single use case typically involves a wallet holder, the Member State entity that provides the wallet, the national authority that issues the foundational identity credential, one or more private-sector credential issuers that issue sector-specific attestations, one or more relying parties that verify those attestations at the point of service, and a trust infrastructure that underpins all of this. Even the simplest WP4 use case engages at least five actor categories. More complex ones (for example, UC 3 SEDIT-X, with its five episodes) engage actors from all three WP4 scenarios and several Member States.
 
-### Actor categories in WP4
+**Actor categories in WP4**
 
 WP4 distinguishes between the following actor categories, aligned with the terminology of eIDAS 2.0 and the Architectural Reference Framework (ARF). Each category is defined in generic terms here; the concrete APTITUDE partners that play each role in each use case are mapped in Section 8.1, and the authoritative partner-level detail is recorded in Annex B.
 
@@ -23,7 +23,7 @@ In addition to these core categories, WP4 interacts with actors that do not fit 
 * **Standardisation bodies and ecosystem groups** (such as the eIDAS Expert Group, the OpenID Foundation, ISO/IEC, ICAO, IATA) whose specifications frame the technical choices in Chapter 7. These actors do not operate the ecosystem but shape its rules; the engagement with them is documented in Sections 3.2 and 3.3.
 * **Other APTITUDE Work Packages** (WP2, WP3, WP6, WP7) whose outputs WP4 consumes or contributes to. These Work Packages appear throughout the deliverable as institutional actors of APTITUDE rather than as ecosystem actors of the pilot itself; their relationship with WP4 is documented in Section 2.3.
 
-### Partner can play several roles
+**Partner can play several roles**
 
 A distinguishing feature of the APTITUDE consortium is that many partner organisations play more than one role in the WP4 pilot. This is by design: the project deliberately engages full-stack partners that can cover several steps of the same user journey. Three patterns recur across the 11 use cases.
 
@@ -33,7 +33,7 @@ A distinguishing feature of the APTITUDE consortium is that many partner organis
 
 These overlaps are recorded explicitly in the Section 8.1 mapping, so that readers do not have to infer them from the narrative.
 
-### Relationship to other chapters and annexes
+**Relationship to other chapters and annexes**
 
 The actor-and-role view presented here is in dialogue with several other parts of the deliverable.
 
