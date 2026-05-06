@@ -1,4 +1,4 @@
-# 6. Legal and Regulatory Framework
+# Legal and Regulatory Framework
 
 This chapter analyses the legal and regulatory context that constrains or enables the WP4 use cases. It answers the D4.1 requirement to cover the *legal and regulatory requirements* that apply to tickets and check-in scenarios, and it complements the operational baseline presented in Chapter 5 with a legal baseline. Together, the two chapters provide the full picture of the environment that the pilot implementations will operate within.
 
@@ -28,4 +28,3 @@ Certain bodies of law that apply across all three sectors are treated within the
 ### Relation to the horizontal work of WP7
 
 WP7 (Compliance, European Values and Civil Society) covers the transversal ethics and compliance framework that applies across the whole APTITUDE project. Where a topic belongs primarily to the WP7 remit (such as the Ethics Review, the Data Protection Impact Assessment, and the alignment with the European Values guidance), this chapter refers to WP7 outputs rather than duplicating the analysis.
-
