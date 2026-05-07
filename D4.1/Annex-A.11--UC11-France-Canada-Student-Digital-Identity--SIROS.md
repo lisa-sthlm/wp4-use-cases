@@ -189,3 +189,144 @@ Section 6.2.3 of the main body carries the consolidated review input.
 | OI-06 | ARF baseline version selection | WP2 D2.1 | At detailed design |
 | OI-07 | Cross-border trust-bridging mechanism selection | UC lead + DIACC | At detailed design |
 | OI-08 | Canadian-side verifier deployment plan (incl. open-source delivery) | UC lead + onboarded relying parties | Before pilot start |
+
+
+
+### A.11.20 Diagram flow
+```mermaid
+sequenceDiagram
+    actor Marie
+    participant EUDIWallet as EUDIW
+    participant UniversityPortal as University Portal
+    participant UniversityVerifier as University Verifier
+    participant HousingProvider as Housing Provider
+    participant HousingVerifier as Housing Verifier
+    participant TransportAuthority as Transport Authority
+    participant TransportVerifier as Transport Verifier
+    participant TrustRegistry as Trust Registry
+    participant FranceIssuer as France PID Issuer
+    participant GyroIssuer as GYRO Issuer
+
+    rect rgb(200, 220, 255)
+        Note over Marie,GyroIssuer: Phase 0: Credential Onboarding (Pre-Journey)
+        Marie->>EUDIWallet: Open wallet, authenticate
+        EUDIWallet->>EUDIWallet: Authenticate to wallet
+        EUDIWallet->>FranceIssuer: Request PID credential
+        FranceIssuer->>EUDIWallet: Issue PID (name, DOB, nationality, etc.)
+        EUDIWallet->>EUDIWallet: Store PID with issuer signature
+        EUDIWallet->>GyroIssuer: Request student credential (GYRO)
+        GyroIssuer->>EUDIWallet: Issue GYRO (student status, institution, validity period)
+        EUDIWallet->>EUDIWallet: Store GYRO with issuer signature
+    end
+
+    rect rgb(255, 240, 200)
+        Note over Marie,TransportVerifier: Phase 1: University Enrollment & Identity Verification
+        Marie->>UniversityPortal: Access enrollment portal
+        UniversityPortal->>UniversityVerifier: Initiate verification flow
+        UniversityVerifier->>UniversityVerifier: Generate verification request
+        UniversityVerifier->>Marie: Send QR code (verification request: PID required)
+        Marie->>EUDIWallet: Scan QR code with wallet
+        EUDIWallet->>EUDIWallet: Parse verification request
+        EUDIWallet->>EUDIWallet: User consent screen (display requested attributes)
+        Marie->>EUDIWallet: Approve sharing name, DOB, nationality
+        EUDIWallet->>EUDIWallet: Wallet authentication (biometric/PIN)
+        EUDIWallet->>EUDIWallet: Generate verifiable presentation (PID)
+        EUDIWallet->>UniversityVerifier: Send VP with PID attributes
+        UniversityVerifier->>UniversityVerifier: Parse verifiable presentation
+        UniversityVerifier->>UniversityVerifier: Extract issuer public key
+        UniversityVerifier->>UniversityVerifier: Verify cryptographic signature on credential
+        UniversityVerifier->>TrustRegistry: Validate France issuer
+        TrustRegistry->>UniversityVerifier: Return validation result
+        UniversityVerifier->>UniversityVerifier: Check credential not expired
+        alt Signature Valid & Issuer Trusted
+            UniversityVerifier->>UniversityVerifier: Extract attributes (name, DOB, nationality)
+            UniversityVerifier->>UniversityVerifier: Confirm Marie is French national
+            UniversityVerifier->>UniversityPortal: Identity verified ✓
+            UniversityPortal->>Marie: Identity confirmed, requesting student status proof
+            Marie->>EUDIWallet: Request student status proof
+            EUDIWallet->>EUDIWallet: User consent screen (GYRO attributes)
+            Marie->>EUDIWallet: Approve sharing student status
+            EUDIWallet->>EUDIWallet: Generate verifiable presentation (GYRO)
+            EUDIWallet->>UniversityVerifier: Send VP with GYRO attributes
+            UniversityVerifier->>UniversityVerifier: Verify GYRO signature
+            UniversityVerifier->>TrustRegistry: Validate GYRO issuer
+            TrustRegistry->>UniversityVerifier: Return issuer validation result
+            UniversityVerifier->>UniversityVerifier: Validate credential validity period
+            alt GYRO Valid & Semantically Understood
+                UniversityVerifier->>UniversityVerifier: Extract student status, institution
+                UniversityVerifier->>UniversityPortal: Student status verified ✓
+                UniversityPortal->>Marie: Enrollment eligibility confirmed
+            else GYRO Valid But Not Understood
+                UniversityVerifier->>UniversityVerifier: Log semantic mismatch
+                UniversityVerifier->>UniversityPortal: Student credential received but requires manual review
+                UniversityPortal->>Marie: Please contact admissions for manual verification
+            end
+        else Signature Invalid or Issuer Not Trusted
+            UniversityVerifier->>UniversityPortal: Verification failed ✗
+            UniversityPortal->>Marie: Credential verification failed. Please contact support.
+            Note over Marie,UniversityPortal: Fallback: Manual document submission required
+        end
+    end
+
+    rect rgb(220, 255, 220)
+        Note over Marie,TransportVerifier: Phase 2: Student Housing Access
+        Marie->>HousingProvider: Apply for student housing
+        HousingProvider->>HousingVerifier: Initiate dual verification (PID + student status)
+        HousingVerifier->>Marie: Send QR code (request: PID + GYRO required)
+        Marie->>EUDIWallet: Scan QR code
+        EUDIWallet->>EUDIWallet: Parse request (PID + GYRO)
+        EUDIWallet->>EUDIWallet: User consent screen
+        Marie->>EUDIWallet: Approve sharing both credentials (selective disclosure: name, DOB, nationality, student status)
+        EUDIWallet->>EUDIWallet: Wallet authentication
+        EUDIWallet->>EUDIWallet: Generate dual verifiable presentations
+        EUDIWallet->>HousingVerifier: Send VP (PID + GYRO)
+        HousingVerifier->>HousingVerifier: Verify both signatures
+        HousingVerifier->>TrustRegistry: Validate both issuers
+        TrustRegistry->>HousingVerifier: Return validation result
+        HousingVerifier->>HousingVerifier: Validate both credentials not expired
+        alt Both Credentials Valid
+            HousingVerifier->>HousingVerifier: Extract identity + student status
+            HousingVerifier->>HousingVerifier: Confirm eligibility for student housing
+            HousingVerifier->>HousingProvider: Verification passed ✓
+            HousingProvider->>Marie: Housing application approved
+        else One or Both Credentials Invalid
+            HousingVerifier->>HousingProvider: Verification failed ✗
+            HousingProvider->>Marie: Documentation required for manual review
+        end
+    end
+
+    rect rgb(255, 220, 220)
+        Note over Marie,TransportVerifier: Phase 3: Public Transport Discount (Selective Disclosure)
+        Marie->>TransportAuthority: Request student transport discount
+        TransportAuthority->>TransportVerifier: Initiate student status verification
+        TransportVerifier->>Marie: Send QR code (request: student status only, minimal attributes)
+        Marie->>EUDIWallet: Scan QR code
+        EUDIWallet->>EUDIWallet: Parse request (selective disclosure: student status only)
+        EUDIWallet->>EUDIWallet: User consent screen
+        Note over EUDIWallet,Marie: Selective disclosure required for transport discount
+        Marie->>EUDIWallet: Approve sharing student status only
+        EUDIWallet->>UniversityVerifier: Generate VP with student status
+        UniversityVerifier->>UniversityVerifier: Verify signature
+        UniversityVerifier->>TrustRegistry: Validate TransportIssuer
+        TrustRegistry->>UniversityVerifier: Return validation result
+        UniversityVerifier->>UniversityVerifier: Validate transport-specific validity period
+        alt Transport status verified ✓
+            UniversityVerifier->>UniversityPortal: Transport discount applied ✓
+            UniversityPortal->>Marie: Discount confirmed
+        else Transport verification failed ✗
+            UniversityVerifier->>UniversityPortal: Fallback - manual verification required
+            UniversityPortal->>Marie: Please provide documentation for manual review
+        end
+    end
+
+    rect rgb(240, 240, 240)
+        Note over Marie,TransportVerifier: Phase 4: Journey Completion
+        Marie->>EUDIWallet: Show wallet for boarding
+        EUDIWallet->>UniversityVerifier: Presentation of final VP (PID + GYRO)
+        UniversityVerifier->>TransportAuthority: Transit authentication request
+        TransportAuthority->>TransportVerifier: Verify final presentation
+        TransportVerifier->>TransportAuthority: Confirmation of identity & student status
+        TransportAuthority->>TransportAuthority: Grant access to transport services
+        TransportAuthority->>Marie: Boarding allowed, student discount applied
+        Note over Marie,TransportVerifier: Journey completed successfully
+    end
